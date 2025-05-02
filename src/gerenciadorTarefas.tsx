@@ -37,9 +37,10 @@ function reducer(state: StateTarefa, action: ActionTarefa): StateTarefa {
   } else {
     return{
       ...state,
-      tarefas: state.tarefas.filter((task)=>
+      tarefas: state.tarefas.map((task)=>
         task.id === action.payload
-          ? {...task, concluida: !task.concluida}: task
+          ? {...task, concluida: !task.concluida} 
+          : task
       )
     }
 
@@ -67,7 +68,7 @@ export default function GerenciadorTarefas() {
               border-none outline-none placeholder:italic placeholder:text-[15px]
               placeholder:text-white/400 rounded " placeholder="Digite a tarefa aqui"/>
               <button className="bg-blue-500 pl-3 pr-3 h-8 text-white
-              cursor-pointer hover:bg-blue-400" onClick={saveTask}>Adicionar</button>
+              cursor-pointer hover:bg-blue-400 rounded" onClick={saveTask}>Adicionar</button>
 
             </div>
             <div className="mt-20 space-y-2">
